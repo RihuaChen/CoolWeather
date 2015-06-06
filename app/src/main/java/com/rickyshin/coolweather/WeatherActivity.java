@@ -158,7 +158,7 @@ public class WeatherActivity extends AppCompatActivity{
          * 请不要添加key参数.
          */
         Parameters params = new Parameters();
-        params.add("cityname", "莆田"  );
+        params.add("cityname", "仙游"  );
         params.add("dtype", "json");
         /**
          * 请求的方法 参数: 第一个参数 当前请求的context;
