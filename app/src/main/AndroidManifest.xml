@@ -24,6 +24,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="citylist.CityListActivity"
+
+            >
+        </activity>
+
+        <receiver android:name=".SuperActivity$MyReceiver">
+            <!--<intent-filter>-->
+                <!--&lt;!&ndash;<action android:name="com.rickyshin.coolweather.SuperActivity$MyReceiver.SYSTEM_EXIT"/>&ndash;&gt;-->
+            <!--</intent-filter>-->
+        </receiver>
     </application>
 
 </manifest>

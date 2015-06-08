@@ -1,11 +1,11 @@
 package com.rickyshin.coolweather.bean;
 
 /**
- * Created by 日华 on 2015/6/4.
+ * Created by 鏃ュ崕 on 2015/6/4.
  */
 public class PMBean  {
 
-    private String aqi; //空气质量指数
+    private String aqi; //绌烘皵璐ㄩ噺鎸囨暟
 
     private String quality;
 

@@ -1,7 +1,7 @@
 package com.rickyshin.coolweather.bean;
 
 /**
- * Created by ÈÕ»ª on 2015/6/4.
+ * Created by  æ—¥å on 2015/6/4.
  */
 public class HoursWeatherBean {
 
