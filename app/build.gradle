@@ -30,3 +30,8 @@ dependencies {
     compile files('libs/juhe_sdk_v_1_6.jar')
     compile files('libs/gson-2.3.jar')
 }
+
+dependencies {
+    compile 'com.melnykov:floatingactionbutton:1.3.0'
+}
+

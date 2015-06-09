@@ -4,10 +4,11 @@
     <color name="light_grey">#E6E6E6</color>
     <color name="dark_grey">#888888</color>
     <color name="frame_color">#717171</color>
-    <color name="text_color">#666666</color>
+    <color name="text_color">#FF000000</color>
+    <!--#6AB5B0-->
+    <color name="button_background">#39AEC2</color>
 
-
-    <color name="background">#FF000000</color>
+    <color name="background">#6AB5B0</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="yellow">#FFFFE400</color>

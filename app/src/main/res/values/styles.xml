@@ -15,12 +15,12 @@
 
     <style name="TextViewStyle" parent="ViewStyle">
         <item name="android:textSize">12sp</item>
-        <item name="android:textColor">@color/text_color</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="TextViewStyleFuture" parent="ViewStyle">
         <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/text_color</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
 </resources>
