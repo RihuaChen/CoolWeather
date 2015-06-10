@@ -17,15 +17,22 @@
         <meta-data
             android:name="com.thinkland.juheapi.openid"
             android:value="JHcbbf79c50e4925009e67f5037248b899" />
+
         <activity android:name=".WeatherActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="citylist.CityListActivity"
 
+        <activity android:name=".LoginActivity"
+            >
+        </activity>
+
+        <activity android:name="citylist.CityListActivity"
+            android:launchMode="singleTask"
             >
         </activity>
 

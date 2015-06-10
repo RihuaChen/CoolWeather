@@ -318,14 +318,14 @@
                                 android:src="@drawable/d00"
                                 />
                             <TextView
-                                android:id="@+id/tv_tomorrow_temp_a"
+                                android:id="@+id/tv_tomorrow_weather"
                                 style="@style/TextViewStyleFuture"
                                 android:layout_weight="1"
                                 android:text="@string/default_text"
 
                                 />
                             <TextView
-                                android:id="@+id/tv_tomorrow_temp_b"
+                                android:id="@+id/tv_tomorrow_temp"
                                 style="@style/TextViewStyleFuture"
                                 android:layout_weight="1"
                                 android:text="@string/default_text"
@@ -355,14 +355,14 @@
                                 android:src="@drawable/d00"
                                 />
                             <TextView
-                                android:id="@+id/tv_third_temp_a"
+                                android:id="@+id/tv_third_weather"
                                 style="@style/TextViewStyleFuture"
                                 android:layout_weight="1"
                                 android:text="@string/default_text"
 
                                 />
                             <TextView
-                                android:id="@+id/tv_third_temp_b"
+                                android:id="@+id/tv_third_temp"
                                 style="@style/TextViewStyleFuture"
                                 android:layout_weight="1"
                                 android:text="@string/default_text"
@@ -389,14 +389,14 @@
                                 android:src="@drawable/d00"
                                 />
                             <TextView
-                                android:id="@+id/tv_fourth_temp_a"
+                                android:id="@+id/tv_fourth_weather"
                                 style="@style/TextViewStyleFuture"
                                 android:layout_weight="1"
                                 android:text="@string/default_text"
 
                                 />
                             <TextView
-                                android:id="@+id/tv_fourth_temp_b"
+                                android:id="@+id/tv_fourth_temp"
                                 style="@style/TextViewStyleFuture"
                                 android:layout_weight="1"
                                 android:text="@string/default_text"

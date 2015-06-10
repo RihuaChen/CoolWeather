@@ -24,8 +24,6 @@ public class SuperActivity extends Activity {
     /** 广播action */
     private MyReceiver receiver;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,8 +32,6 @@ public class SuperActivity extends Activity {
         filter.addAction(SYSTEM_EXIT);
         receiver = new MyReceiver();
         this.registerReceiver(receiver, filter);
-
-
     }
 
     @Override

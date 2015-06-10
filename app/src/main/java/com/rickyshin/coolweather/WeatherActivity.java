@@ -2,8 +2,10 @@ package com.rickyshin.coolweather;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageButton;
@@ -34,39 +36,23 @@ public class WeatherActivity extends SuperActivity {
     private PullToRefreshView mPullToRefreshView;
     private ScrollView mScrollView;
 
-
     private TextView
             tv_city,
             tv_release,
-            tv_now_weather,
+            tv_now_weather, //实时天气，温度
             tv_today_temp,
-            tv_aqi, //空气质量指数
-            tv_quality,//空气质量
-
-    tv_next_three,  //小时温度
-            tv_next_six,
-            tv_next_nine,
-            tv_next_twelve,
-            tv_next_fifteen,
-
-    tv_temp_three, //小时
-            tv_temp_six,
-            tv_temp_nine,
-            tv_temp_twelve,
-            tv_temp_fifteen,
-
 
             tv_tomorrow,   //明天
-            tv_tomorrow_temp_a,
-            tv_tomorrow_temp_b,
+            tv_tomorrow_weather,
+            tv_tomorrow_temp,
 
             tv_third,       //第三天
-            tv_third_temp_a,
-            tv_third_temp_b,
+            tv_thirdDay_weather,
+            tv_thirdDay_temp,
 
             tv_fourth,      //第四天
-            tv_fourth_temp_a,
-            tv_fourth_temp_b,
+            tv_fourthDay_weather,
+            tv_fourthDay_temp,
 
             tv_felt_air_temp,
             tv_humidity,//湿度
@@ -76,16 +62,10 @@ public class WeatherActivity extends SuperActivity {
             tv_exercise_index; //锻炼指数
 
     private ImageView
-            iv_now_weather, //现在
-            iv_next_three,      //小时天气
-            iv_next_six,
-            iv_next_nine,
-            iv_next_twelve,
-            iv_next_fifteen,
-
+            iv_now_weather,    //实时天气
             iv_tomorrow_weather,
-            iv_thirdday_weather,
-            iv_fourthday_weather;
+            iv_thirdDay_weather,
+            iv_fourthDay_weather;
 
     private ImageButton button_city;
 
@@ -93,8 +73,6 @@ public class WeatherActivity extends SuperActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        requestWindowFeature(Window.FEATURE_NO_TITLE);
-
 
         mContext = this;
 
@@ -102,33 +80,18 @@ public class WeatherActivity extends SuperActivity {
         tv_release = (TextView) findViewById(R.id.tv_release);
         tv_now_weather = (TextView) findViewById(R.id.tv_now_weather);
         tv_today_temp = (TextView) findViewById(R.id.tv_today_temp);
-//        tv_aqi = (TextView) findViewById(R.id.tv_aqi);
-//        tv_quality = (TextView) findViewById(R.id.tv_quality);
-
-//        tv_next_three = (TextView) findViewById(R.id.tv_next_three);
-//        tv_next_six = (TextView) findViewById(R.id.tv_next_six);
-//        tv_next_nine = (TextView) findViewById(R.id.tv_next_nine);
-//        tv_next_twelve = (TextView) findViewById(R.id.tv_next_twelve);
-//        tv_next_fifteen = (TextView) findViewById(R.id.tv_next_fifteen);
-//
-//        tv_temp_three = (TextView) findViewById(R.id.tv_temp_three);
-//        tv_temp_six = (TextView) findViewById(R.id.tv_temp_six);
-//        tv_temp_nine = (TextView) findViewById(R.id.tv_temp_nine);
-//        tv_temp_twelve = (TextView) findViewById(R.id.tv_temp_twelve);
-//        tv_temp_fifteen = (TextView) findViewById(R.id.tv_temp_fifteen);
-
 
         tv_tomorrow = (TextView) findViewById(R.id.tv_tomorrow);
-        tv_tomorrow_temp_a = (TextView) findViewById(R.id.tv_tomorrow_temp_a);
-        tv_tomorrow_temp_b = (TextView) findViewById(R.id.tv_tomorrow_temp_b);
+        tv_tomorrow_weather = (TextView) findViewById(R.id.tv_tomorrow_weather);
+        tv_tomorrow_temp = (TextView) findViewById(R.id.tv_tomorrow_temp);
 
         tv_third = (TextView) findViewById(R.id.tv_third);
-        tv_third_temp_a = (TextView) findViewById(R.id.tv_third_temp_a);
-        tv_third_temp_b = (TextView) findViewById(R.id.tv_third_temp_b);
+        tv_thirdDay_weather = (TextView) findViewById(R.id.tv_third_weather);
+        tv_thirdDay_temp = (TextView) findViewById(R.id.tv_third_temp);
 
         tv_fourth = (TextView) findViewById(R.id.tv_fourth);
-        tv_fourth_temp_a = (TextView) findViewById(R.id.tv_fourth_temp_a);
-        tv_fourth_temp_b = (TextView) findViewById(R.id.tv_fourth_temp_b);
+        tv_fourthDay_weather = (TextView) findViewById(R.id.tv_fourth_weather);
+        tv_fourthDay_temp = (TextView) findViewById(R.id.tv_fourth_temp);
 
         tv_felt_air_temp = (TextView) findViewById(R.id.tv_felt_air_temp);
         tv_humidity = (TextView) findViewById(R.id.tv_humidity);
@@ -136,21 +99,11 @@ public class WeatherActivity extends SuperActivity {
         tv_uv_index = (TextView) findViewById(R.id.tv_uv_index);
         tv_dressing_index = (TextView) findViewById(R.id.tv_dressing_index);
         tv_exercise_index = (TextView) findViewById(R.id.tv_exercise_index);
-//        tv_ = (TextView) findViewById(R.id.tv_);
 
         iv_now_weather = (ImageView) findViewById(R.id.iv_now_weather);
-
-//        iv_next_three = (ImageView) findViewById(R.id.iv_next_three);
-//        iv_next_six = (ImageView) findViewById(R.id.iv_next_six);
-//        iv_next_nine = (ImageView) findViewById(R.id.iv_next_nine);
-//        iv_next_twelve = (ImageView) findViewById(R.id.iv_next_twelve);
-//        iv_next_fifteen = (ImageView) findViewById(R.id.iv_next_fifteen);
-
-
         iv_tomorrow_weather = (ImageView) findViewById(R.id.iv_tomorrow_weather);
-        iv_thirdday_weather = (ImageView) findViewById(R.id.iv_third_weather);
-        iv_fourthday_weather = (ImageView) findViewById(R.id.iv_fourth_weather);
-
+        iv_thirdDay_weather = (ImageView) findViewById(R.id.iv_third_weather);
+        iv_fourthDay_weather = (ImageView) findViewById(R.id.iv_fourth_weather);
 
         button_city = (ImageButton) findViewById(R.id.button_city);
         button_city.setOnClickListener(new View.OnClickListener() {
@@ -161,11 +114,19 @@ public class WeatherActivity extends SuperActivity {
             }
         });
 
-        Intent intent2 = getIntent();
-        String city = intent2.getStringExtra("city");
-        if (city == null) getWeatherData("北京");
-        else getWeatherData(city);
-
+        SharedPreferences pref = getSharedPreferences("data", MODE_PRIVATE);
+        String city = pref.getString("cityname", "");
+        //城市是否为空判定，
+        // 如果为空就进行城市选择，
+        // 不为空向服务器提交城市数据
+        if (TextUtils.isEmpty(city)) {
+            Intent intent = new Intent(WeatherActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        } else {
+            getWeatherData(city);
+        }
+        //下拉刷新
         mPullToRefreshView = (PullToRefreshView) findViewById(R.id.pull_to_refresh);
         mPullToRefreshView.setOnRefreshListener(new PullToRefreshView.OnRefreshListener() {
             @Override
@@ -173,6 +134,10 @@ public class WeatherActivity extends SuperActivity {
                 mPullToRefreshView.postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        mPullToRefreshView.setRefreshing(true);
+                        SharedPreferences pref = getSharedPreferences("data", MODE_PRIVATE);
+                        String city3 = pref.getString("cityname", "");
+                        getWeatherData(city3);
                         mPullToRefreshView.setRefreshing(false);
                     }
                 }, 499);
@@ -180,6 +145,7 @@ public class WeatherActivity extends SuperActivity {
         });
     }
 
+    //获取天气数据
     private void getWeatherData(String city) {
         /** 请不要添加key参数. */
         Parameters params = new Parameters();
@@ -215,12 +181,13 @@ public class WeatherActivity extends SuperActivity {
              * 具体查看Throwable信息. 其他异常请参照http状态码. */
             @Override
             public void onFailure(int statusCode, String responseString, Throwable throwable) {
-                finish();
                 Toast.makeText(getApplicationContext(), "服务器连接失败", Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
     }
 
+    //解析服务器返回的json数据
     private void parserJson(String StrRe) {
         try {
 
@@ -260,7 +227,6 @@ public class WeatherActivity extends SuperActivity {
             Date d = new Date();
             JSONObject jsonTomorrow =
                     new JSONObject(StrRe).getJSONObject("result").getJSONObject("future").getJSONObject("day_" + d.date1());
-
             String[] tempArr1 = jsonTomorrow.getString("temperature").split("~");
             String temp1_a = tempArr1[0].substring(0, tempArr1[0].indexOf("℃"));
             String temp1_b = tempArr1[1].substring(0, tempArr1[1].indexOf("℃"));
@@ -268,9 +234,8 @@ public class WeatherActivity extends SuperActivity {
             String week1 = jsonTomorrow.getString("week");
             String week1_1 = week1.substring(2, 3);
             tv_tomorrow.setText("周" + week1_1);
-            tv_tomorrow_temp_a.setText(weather1);
-            tv_tomorrow_temp_b.setText(temp1_a + "°/" + temp1_b + "°");
-
+            tv_tomorrow_weather.setText(weather1);
+            tv_tomorrow_temp.setText(temp1_a + "°/" + temp1_b + "°");
             /**第二天天气图片解析*/
             JSONObject tom_weather_id = jsonTomorrow.getJSONObject("weather_id");
             String tom_id = tom_weather_id.getString("fa");
@@ -279,7 +244,6 @@ public class WeatherActivity extends SuperActivity {
             /**第三天预报的数据解析*/
             JSONObject jsonThirdDay =
                     new JSONObject(StrRe).getJSONObject("result").getJSONObject("future").getJSONObject("day_" + d.date2());
-
             String[] tempArr2 = jsonTomorrow.getString("temperature").split("~");
             String temp2_a = tempArr2[0].substring(0, tempArr1[0].indexOf("℃"));
             String temp2_b = tempArr2[1].substring(0, tempArr1[1].indexOf("℃"));
@@ -287,17 +251,16 @@ public class WeatherActivity extends SuperActivity {
             String week2 = jsonThirdDay.getString("week");
             String week2_1 = week2.substring(2, 3);
             tv_third.setText("周" + week2_1);
-            tv_third_temp_a.setText(weather2);
-            tv_third_temp_b.setText(temp2_a + "°/" + temp2_b + "°");
+            tv_thirdDay_weather.setText(weather2);
+            tv_thirdDay_temp.setText(temp2_a + "°/" + temp2_b + "°");
             /**第三天天气图片解析*/
             JSONObject third_weather_id = jsonThirdDay.getJSONObject("weather_id");
             String Third_id = third_weather_id.getString("fa");
-            iv_thirdday_weather.setImageResource(getResources().getIdentifier("d" + Third_id, "drawable", "com.rickyshin.coolweather"));
+            iv_thirdDay_weather.setImageResource(getResources().getIdentifier("d" + Third_id, "drawable", "com.rickyshin.coolweather"));
 
             /**第四天预报的数据解析*/
             JSONObject jsonFourthDay =
                     new JSONObject(StrRe).getJSONObject("result").getJSONObject("future").getJSONObject("day_" + d.date3());
-
             String[] tempArr3 = jsonTomorrow.getString("temperature").split("~");
             String temp3_a = tempArr3[0].substring(0, tempArr1[0].indexOf("℃"));
             String temp3_b = tempArr3[1].substring(0, tempArr1[1].indexOf("℃"));
@@ -305,19 +268,17 @@ public class WeatherActivity extends SuperActivity {
             String week3 = jsonFourthDay.getString("week");
             String week3_1 = week3.substring(2, 3);
             tv_fourth.setText("周" + week3_1);
-            tv_fourth_temp_a.setText(weather3);
-            tv_fourth_temp_b.setText(temp3_a + "°/" + temp3_b + "°");
+            tv_fourthDay_weather.setText(weather3);
+            tv_fourthDay_temp.setText(temp3_a + "°/" + temp3_b + "°");
             /**第四天天气图片解析*/
             JSONObject fourth_weather_id = jsonFourthDay.getJSONObject("weather_id");
             String fourth_id = fourth_weather_id.getString("fa");
-            iv_fourthday_weather.setImageResource(getResources().getIdentifier("d" + fourth_id, "drawable", "com.rickyshin.coolweather"));
-
+            iv_fourthDay_weather.setImageResource(getResources().getIdentifier("d" + fourth_id, "drawable", "com.rickyshin.coolweather"));
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
-
 
     /**
      * 菜单、返回键响应
@@ -330,7 +291,6 @@ public class WeatherActivity extends SuperActivity {
         }
         return false;
     }
-
     /**
      * 双击退出函数
      */
@@ -355,9 +315,8 @@ public class WeatherActivity extends SuperActivity {
             intent.setAction(SuperActivity.SYSTEM_EXIT);
             sendBroadcast(intent);
         }
+
     }
-
-
     @Override
     protected void onDestroy() {
         // TODO Auto-generated method stub

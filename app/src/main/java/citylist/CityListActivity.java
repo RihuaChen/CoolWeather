@@ -3,6 +3,7 @@ package citylist;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
@@ -72,9 +73,15 @@ public class CityListActivity extends SuperActivity implements TextWatcher
 //				Toast.makeText(context_,
 //						searchList.get(position).getDisplayInfo(),
 //						Toast.LENGTH_SHORT).show();
+
 				String city = searchList.get(position).getDisplayInfo();
+
+				SharedPreferences.Editor editor = getSharedPreferences("data", MODE_PRIVATE).edit();
+				editor.putString("cityname", city);
+				editor.commit();
+
 				Intent intent = new Intent(CityListActivity.this, WeatherActivity.class);
-				intent.putExtra("city", city);
+//				intent.putExtra("city", city);
 				startActivity(intent);
 				finish();
 			}
