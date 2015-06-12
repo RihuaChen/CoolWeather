@@ -11,7 +11,7 @@ import android.os.Bundle;
 /**
  * Created by 日华 on 2015/6/6.
  */
-public class SuperActivity extends Activity {
+public abstract class SuperActivity extends Activity {
     /**
      * 所有activity都继承此类，同时也就等于注册了广播，
      * 当需要完全退出系统的时候就可以发送广播，
@@ -41,10 +41,10 @@ public class SuperActivity extends Activity {
         super.onDestroy();
     }
 
-    public class MyReceiver extends BroadcastReceiver {
+    public static class MyReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            finish();
+            ((Activity) context).finish();
         }
     }
 }

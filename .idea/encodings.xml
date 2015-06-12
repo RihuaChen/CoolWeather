@@ -3,7 +3,14 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/app/src/main/java/citylist/CityListActivity.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/citylist/data/CityData.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/citylist/model/CityItem.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/citylist/widget/IndexScroller.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/rickyshin/coolweather/Date.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/rickyshin/coolweather/LoginActivity.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/rickyshin/coolweather/bean/HoursWeatherBean.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/rickyshin/coolweather/bean/ResultBean.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/rickyshin/coolweather/citylist/CityListActivity.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/rickyshin/coolweather/citylist/data/CityData.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/rickyshin/coolweather/citylist/widget/IndexScroller.java" charset="UTF-8" />
   </component>
 </project>

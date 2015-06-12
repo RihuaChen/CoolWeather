@@ -182,7 +182,6 @@ public class WeatherActivity extends SuperActivity {
             @Override
             public void onFailure(int statusCode, String responseString, Throwable throwable) {
                 Toast.makeText(getApplicationContext(), "服务器连接失败", Toast.LENGTH_SHORT).show();
-                finish();
             }
         });
     }
@@ -225,8 +224,10 @@ public class WeatherActivity extends SuperActivity {
 
             /**第二天预报的数据解析*/
             Date d = new Date();
+
+
             JSONObject jsonTomorrow =
-                    new JSONObject(StrRe).getJSONObject("result").getJSONObject("future").getJSONObject("day_" + d.date1());
+                    new JSONObject(StrRe).getJSONObject("result").getJSONObject("future").getJSONObject("day_" + d.getDate(1));
             String[] tempArr1 = jsonTomorrow.getString("temperature").split("~");
             String temp1_a = tempArr1[0].substring(0, tempArr1[0].indexOf("℃"));
             String temp1_b = tempArr1[1].substring(0, tempArr1[1].indexOf("℃"));
@@ -243,7 +244,7 @@ public class WeatherActivity extends SuperActivity {
 
             /**第三天预报的数据解析*/
             JSONObject jsonThirdDay =
-                    new JSONObject(StrRe).getJSONObject("result").getJSONObject("future").getJSONObject("day_" + d.date2());
+                    new JSONObject(StrRe).getJSONObject("result").getJSONObject("future").getJSONObject("day_" + d.getDate(2));
             String[] tempArr2 = jsonTomorrow.getString("temperature").split("~");
             String temp2_a = tempArr2[0].substring(0, tempArr1[0].indexOf("℃"));
             String temp2_b = tempArr2[1].substring(0, tempArr1[1].indexOf("℃"));
@@ -260,7 +261,7 @@ public class WeatherActivity extends SuperActivity {
 
             /**第四天预报的数据解析*/
             JSONObject jsonFourthDay =
-                    new JSONObject(StrRe).getJSONObject("result").getJSONObject("future").getJSONObject("day_" + d.date3());
+                    new JSONObject(StrRe).getJSONObject("result").getJSONObject("future").getJSONObject("day_" + d.getDate(3));
             String[] tempArr3 = jsonTomorrow.getString("temperature").split("~");
             String temp3_a = tempArr3[0].substring(0, tempArr1[0].indexOf("℃"));
             String temp3_b = tempArr3[1].substring(0, tempArr1[1].indexOf("℃"));
